@@ -1,5 +1,6 @@
 {
     "eslint.run": "onSave",
     "coc.preferences.formatOnSaveFiletypes": ["typescript", "typescriptreact", "rust", "javascript", "javascriptreact", "json"],
-    "rust-analyzer.checkOnSave.command": "clippy"
+    "rust-analyzer.checkOnSave.command": "clippy",
+    "coc.preferences.extensionUpdateCheck": "never"
 }
