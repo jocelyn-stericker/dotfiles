@@ -34,7 +34,7 @@ Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 if !empty($NETTERFIELD_SETUP)
-  source update.vim
+  runtime update.vim
 else
-  source config.vim
+  runtime config.vim
 endif
