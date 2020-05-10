@@ -1,0 +1,3 @@
+PlugUpgrade
+PlugUpdate --sync
+qa
