@@ -164,27 +164,38 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " provide custom statusline: lightline.vim, vim-airline.
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
-" Mappings using CoCList:
-nnoremap <silent> <leader>t :<C-u>CocList files<cr>
-nnoremap <silent> <leader>L :<C-u>CocList -I grep<cr>
-nnoremap <silent> <space>l  :<C-u>CocList<CR>
+" Mappings using CoCList/FZF:
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+command! -bang -nargs=* GGrep
+  \ call fzf#vim#grep(
+  \   'git grep --line-number -- '.shellescape(<q-args>), 0,
+  \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
+ 
+nnoremap <silent> <leader>t :<C-u>GFiles<cr>
+nnoremap <silent> <leader>T :<C-u>GFiles<cr>
+nnoremap <silent> <leader>L :<C-u>GGrep<cr>
+nnoremap <silent> <space>l  :<C-u>CocFzfList<CR>
 
 " Show all diagnostics.
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <space>a  :<C-u>CocFzfList diagnostics<cr>
 " Manage extensions.
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+nnoremap <silent> <space>e  :<C-u>CocFzfList extensions<cr>
 " Show commands.
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+nnoremap <silent> <space>c  :<C-u>CocFzfList commands<cr>
 " Find symbol of current document.
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+nnoremap <silent> <space>o  :<C-u>CocFzfList outline<cr>
 " Search workspace symbols.
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+nnoremap <silent> <space>s  :<C-u>CocFzfList symbols<cr>
 " Do default action for next item.
 nnoremap <silent> <space>]  :<C-u>CocNext<CR>
 " Do default action for previous item.
 nnoremap <silent> <space>[  :<C-u>CocPrev<CR>
 " Resume latest coc list.
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+nnoremap <silent> <space>p  :<C-u>CocFzfListResume<CR>
+nnoremap <silent> <space>p  :<C-u>CocFzfListResume<CR> 
+
+" Airline
 let g:airline_section_b = ''
 let g:airline_section_x = ''
 let g:airline_section_y = ''
+

@@ -1,6 +1,6 @@
 {
     "eslint.run": "onSave",
-    "coc.preferences.formatOnSaveFiletypes": ["typescript", "typescriptreact", "rust", "javascript", "javascriptreact", "json"],
+    "coc.preferences.formatOnSaveFiletypes": ["typescript", "typescriptreact", "rust", "javascript", "javascriptreact", "json", "css", "scss"],
     "rust-analyzer.checkOnSave.command": "clippy",
     "coc.preferences.extensionUpdateCheck": "never",
     "coc.preferences.useQuickfixForLocations": true
