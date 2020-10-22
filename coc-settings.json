@@ -15,5 +15,6 @@
   "rust-analyzer.checkOnSave.command": "clippy",
   "coc.preferences.extensionUpdateCheck": "never",
   "coc.preferences.useQuickfixForLocations": true,
-  "list.source.grep.useLiteral": false
+  "list.source.grep.useLiteral": false,
+  "rust-analyzer.cargo.loadOutDirsFromCheck": true
 }

@@ -26,3 +26,6 @@ colors:
 font:
   normal:
     family: Inconsolata
+key_bindings:
+ - { key: F11, action: ToggleFullscreen }
+decorations: none
