@@ -103,7 +103,7 @@ function! s:show_documentation()
 endfunction
 
 " Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
+" autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
@@ -172,7 +172,7 @@ command! -bang -nargs=* GGrep
   \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
  
 nnoremap <silent> <leader>t :<C-u>GFiles<cr>
-nnoremap <silent> <leader>T :<C-u>GFiles<cr>
+nnoremap <silent> <leader>T :<C-u>GFiles?<cr>
 nnoremap <silent> <leader>L :<C-u>GGrep<cr>
 nnoremap <silent> <space>l  :<C-u>CocFzfList<CR>
 
@@ -199,3 +199,6 @@ let g:airline_section_b = ''
 let g:airline_section_x = ''
 let g:airline_section_y = ''
 
+autocmd FileType typescript JsPreTmpl
+autocmd FileType typescript syn clear foldBraces
+let loaded_netrwPlugin = 1
