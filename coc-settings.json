@@ -1,7 +1,17 @@
 {
-    "eslint.run": "onSave",
-    "coc.preferences.formatOnSaveFiletypes": ["typescript", "typescriptreact", "rust", "javascript", "javascriptreact", "json", "css", "scss"],
-    "rust-analyzer.checkOnSave.command": "clippy",
-    "coc.preferences.extensionUpdateCheck": "never",
-    "coc.preferences.useQuickfixForLocations": true
+  "eslint.run": "onSave",
+  "coc.preferences.formatOnSaveFiletypes": [
+    "typescript",
+    "typescriptreact",
+    "rust",
+    "javascript",
+    "javascriptreact",
+    "json",
+    "css",
+    "scss"
+  ],
+  "rust-analyzer.checkOnSave.command": "clippy",
+  "coc.preferences.extensionUpdateCheck": "never",
+  "coc.preferences.useQuickfixForLocations": true,
+  "rust-analyzer.cargo.loadOutDirsFromCheck": true
 }
