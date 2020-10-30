@@ -205,3 +205,7 @@ let loaded_netrwPlugin = 1
 set inccommand=split
 nnoremap / /\v
 vnoremap / /\v
+let g:fzf_history_dir = '~/.local/share/fzf-history'
+set grepprg=rg\ --vimgrep\ --no-heading\ --engine\ auto
+set grepformat=%f:%l:%c:%m,%f:%l:%m
+set undofile
