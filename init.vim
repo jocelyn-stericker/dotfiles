@@ -31,14 +31,15 @@ Plug 'tpope/vim-unimpaired'
 
 Plug 'bkad/camelcasemotion'
 Plug 'equalsraf/neovim-gui-shim'
+Plug 'leafgarland/typescript-vim'
+Plug 'mbbill/undotree'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'Quramy/vim-js-pretty-template'
 Plug 'tommcdo/vim-fugitive-blame-ext'
+Plug 'tpope/vim-rhubarb'
 Plug 'tssm/fairyfloss.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'Quramy/vim-js-pretty-template'
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
-Plug 'tpope/vim-rhubarb'
 call plug#end()
 
 if !empty($NETTERFIELD_SETUP)
