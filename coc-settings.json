@@ -16,5 +16,7 @@
   "coc.preferences.extensionUpdateCheck": "never",
   "coc.preferences.useQuickfixForLocations": true,
   "list.source.grep.useLiteral": false,
-  "rust-analyzer.cargo.loadOutDirsFromCheck": true
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "javascript.preferences.importModuleSpecifier": "relative",
+  "prettier.onlyUseLocalVersion": true
 }

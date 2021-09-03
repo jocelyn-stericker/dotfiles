@@ -58,11 +58,7 @@ set signcolumn=yes
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <silent><expr> <c-p> coc#refresh()
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -177,6 +173,7 @@ nnoremap <silent> <space>l  :<C-u>CocFzfList<CR>
 
 " Show all diagnostics.
 nnoremap <silent> <space>a  :<C-u>CocFzfList diagnostics<cr>
+nnoremap <silent> <space>f  :<C-u>CocAction<cr>
 " Manage extensions.
 nnoremap <silent> <space>e  :<C-u>CocFzfList extensions<cr>
 " Show commands.
@@ -191,7 +188,6 @@ nnoremap <silent> <space>]  :<C-u>CocNext<CR>
 nnoremap <silent> <space>[  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <space>p  :<C-u>CocFzfListResume<CR>
-nnoremap <silent> <space>p  :<C-u>CocFzfListResume<CR> 
 
 " Airline
 let g:airline_section_b = ''
@@ -209,3 +205,20 @@ let g:fzf_history_dir = '~/.local/share/fzf-history'
 set grepprg=rg\ --vimgrep\ --no-heading\ --engine\ auto
 set grepformat=%f:%l:%c:%m,%f:%l:%m
 set undofile
+
+function! OpenZippedFile(f)
+  " get number of new (empty) buffer
+  let l:b = bufnr('%')
+  " construct full path
+  let l:f = substitute(a:f, '.zip/', '.zip::', '')
+  let l:f = substitute(l:f, '/zip:', 'zipfile:', '')
+  " swap back to original buffer
+  b #
+  " delete new one
+  exe 'bd! ' . l:b
+  " open buffer with correct path
+  sil exe 'e ' . l:f
+  " read in zip data
+  call zip#Read(l:f, 1)
+endfunction
+au BufReadCmd /zip:*.yarn/cache/*.zip/* call OpenZippedFile(expand('<afile>'))1~
