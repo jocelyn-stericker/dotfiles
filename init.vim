@@ -28,6 +28,7 @@ Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-dadbod'
 
 Plug 'bkad/camelcasemotion'
 Plug 'equalsraf/neovim-gui-shim'
