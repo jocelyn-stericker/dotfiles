@@ -18,5 +18,8 @@
   "list.source.grep.useLiteral": false,
   "typescript.preferences.importModuleSpecifier": "relative",
   "javascript.preferences.importModuleSpecifier": "relative",
-  "prettier.onlyUseLocalVersion": true
+  "prettier.onlyUseLocalVersion": true,
+  "rust-analyzer.diagnostics.disabled": [
+    "missing-unsafe"
+  ]
 }

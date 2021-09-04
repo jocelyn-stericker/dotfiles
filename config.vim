@@ -168,9 +168,9 @@ command! -bang -nargs=* GGrep
   \   'git grep --line-number -- '.shellescape(<q-args>), 0,
   \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
  
-nnoremap <silent> <leader>t :<C-u>GFiles<cr>
+nnoremap <silent> <leader>t :<C-u>Files<cr>
 nnoremap <silent> <leader>T :<C-u>GFiles?<cr>
-nnoremap <silent> <leader>L :<C-u>GGrep<cr>
+nnoremap <silent> <leader>L :<C-u>Rg<cr>
 nnoremap <silent> <space>l  :<C-u>CocFzfList<CR>
 
 " Show all diagnostics.
@@ -224,3 +224,6 @@ function! OpenZippedFile(f)
   call zip#Read(l:f, 1)
 endfunction
 au BufReadCmd /zip:*.yarn/cache/*.zip/* call OpenZippedFile(expand('<afile>'))1~
+
+imap ^[[1~ <Home>
+imap ^[[4~ <End>
