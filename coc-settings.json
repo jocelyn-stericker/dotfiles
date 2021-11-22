@@ -13,6 +13,7 @@
     "scss"
   ],
   "rust-analyzer.checkOnSave.command": "clippy",
+  "rust-analyzer.diagnostics.enable": true,
   "coc.preferences.extensionUpdateCheck": "never",
   "coc.preferences.useQuickfixForLocations": true,
   "list.source.grep.useLiteral": false,
