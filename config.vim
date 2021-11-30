@@ -1,7 +1,8 @@
 colorscheme fairyfloss
-hi CocFloating guifg=fg guibg=#ae81ff gui=NONE
-hi CocErrorFloat guifg=#f8f8f0 guibg=#ae81ff gui=NONE
-hi CocWarningFloat guifg=#f8f8f0 guibg=#ae81ff gui=NONE
+highlight link CocFloating markdown
+hi CocFloating guifg=fg guibg=#716799 gui=NONE
+hi CocErrorFloat guifg=fg guibg=#716799 gui=NONE
+hi CocWarningFloat guifg=fg guibg=#716799 gui=NONE
 
 set cursorline
 hi MarchParen ctermfg=208 ctermbg=233 cterm=bold
