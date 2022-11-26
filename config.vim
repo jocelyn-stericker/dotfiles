@@ -169,14 +169,17 @@ command! -bang -nargs=* GGrep
   \   'git grep --line-number -- '.shellescape(<q-args>), 0,
   \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
  
+let $FZF_DEFAULT_COMMAND='rg --files'
 nnoremap <silent> <leader>t :<C-u>Files<cr>
-nnoremap <silent> <leader>T :<C-u>GFiles?<cr>
+nnoremap <silent> <leader>T :<C-u>GFiles<cr>
+nnoremap <silent> <leader>p :<C-u>GFiles?<cr>
 nnoremap <silent> <leader>L :<C-u>Rg<cr>
 nnoremap <silent> <space>l  :<C-u>CocFzfList<CR>
 
 " Show all diagnostics.
 nnoremap <silent> <space>a  :<C-u>CocFzfList diagnostics<cr>
-nnoremap <silent> <space>f  :<C-u>CocAction<cr>
+xmap <space>f  <Plug>(coc-codeaction-selected)
+nmap <space>f  <Plug>(coc-codeaction-selected)
 " Manage extensions.
 nnoremap <silent> <space>e  :<C-u>CocFzfList extensions<cr>
 " Show commands.

@@ -41,6 +41,7 @@ Plug 'tpope/vim-rhubarb'
 Plug 'tssm/fairyfloss.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'github/copilot.vim'
 call plug#end()
 
 if !empty($NETTERFIELD_SETUP)
