@@ -25,7 +25,7 @@ colors:
     white: "#ffefff"
 font:
   normal:
-    family: Inconsolata
+    family: Inconsolata-g
 key_bindings:
   - { key: F10, action: ToggleFullscreen }
   - { key: Home, chars: "\x1bOH", mode: AppCursor }
