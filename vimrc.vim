@@ -41,6 +41,8 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'mhinz/vim-signify'
 Plug 'j-hui/fidget.nvim', { 'tag': 'legacy' }
+Plug 'norcalli/nvim-colorizer.lua'
+Plug 'samjwill/nvim-unception'
 call plug#end()
 
 if !empty($DOTFILES_SETUP)

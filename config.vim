@@ -75,8 +75,6 @@ nnoremap <silent> <leader>T :<C-u>GFiles<cr>
 nnoremap <silent> <leader>p :<C-u>GFiles?<cr>
 nnoremap <silent> <leader>L :<C-u>Rg<cr>
 
-let loaded_netrwPlugin = 1
-
 set inccommand=split
 nnoremap / /\v
 vnoremap / /\v
@@ -90,3 +88,4 @@ imap ^[[4~ <End>
 
 let g:copilot_node_command = "/opt/homebrew/opt/node@16/bin/node"
 nnoremap <leader>v :execute 'silent !idea --line '.line('.').' '.expand('%:p')\|redraw!<cr>
+highlight CopilotSuggestion guifg=#84a3b1 ctermfg=8

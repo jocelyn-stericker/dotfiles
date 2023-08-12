@@ -1,7 +1,6 @@
 local vimrc = vim.fn.stdpath("config") .. "/vimrc.vim"
 vim.cmd.source(vimrc)
 require'lspconfig'.tsserver.setup {}
-require'lspconfig'.kotlin_language_server.setup{}
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
@@ -86,7 +85,7 @@ null_ls.setup({
 local prettier = require("prettier")
 
 prettier.setup({
-  bin = 'prettierd', -- or `'prettierd'` (v0.23.3+)
+  bin = 'prettierd',
   filetypes = {
     "css",
     "graphql",
@@ -179,3 +178,26 @@ require'nvim-treesitter.configs'.setup {
 require("fidget").setup {
   -- options
 }
+local util = require 'lspconfig.util'
+local configs = require 'lspconfig.configs'
+
+configs.ideals = {
+  default_config = {
+    cmd = { '/Users/jocelynstericker/Library/Application Support/JetBrains/Toolbox/apps/IDEA-C/ch-0/231.9392.1/IntelliJ IDEA CE.app/Contents/MacOS/idea', 'lsp-server' },
+    cmd_env = {
+    },
+    filetypes = { 'kotlin' },
+    root_dir = util.find_git_ancestor,
+    single_file_support = true,
+  },
+  docs = {
+    description = [[
+]],
+    default_config = {
+      root_dir = [[util.find_git_ancestor]],
+    },
+  },
+}
+
+require'lspconfig'.ideals.setup {}
+require'colorizer'.setup()

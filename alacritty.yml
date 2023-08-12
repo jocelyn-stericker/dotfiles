@@ -1,28 +1,28 @@
 colors:
   primary:
     background: "#5a5475"
-    foreground: "#f8f8f2"
+    foreground: "#f8f8f0"
   cursor:
-    text: "#f8f8f2"
-    cursor: "#c7b7c7"
+    text: "#5a5475"
+    cursor: "#f8f8f0"
   normal:
-    black: "#3b3a32"
+    black: "#979797"
     red: "#f1756f"
-    green: "#6de874"
+    green: "#716799"
     yellow: "#e6c000"
-    blue: "#a381ff"
-    magenta: "#ff87b1"
-    cyan: "#7ef5b8"
-    white: "#c7b7c7"
+    blue: "#167be2"
+    magenta: "#ae81ff"
+    cyan: "#55b3cc"
+    white: "#dfdfdf"
   bright:
-    black: "#685868"
-    red: "#ff9f9a"
-    green: "#7bfa81"
-    yellow: "#ffea00"
-    blue: "#c5a3ff"
-    magenta: "#ffb8d1"
+    black: "#b5b2bd"
+    red: "#f92572"
+    green: "#8077a8"
+    yellow: "#fff352"
+    blue: "#96cbfe"
+    magenta: "#c6a3ff"
     cyan: "#c2ffdf"
-    white: "#ffefff"
+    white: "#f8f8f8"
 font:
   normal:
     family: Inconsolata-g
@@ -36,3 +36,8 @@ env:
   TERM: alacritty
 
 decorations: none
+shell:
+  program: /opt/homebrew/bin/fish
+  args:
+    - -c
+    - nvim
