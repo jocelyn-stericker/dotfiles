@@ -43,6 +43,7 @@ Plug 'mhinz/vim-signify'
 Plug 'j-hui/fidget.nvim', { 'tag': 'legacy' }
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'samjwill/nvim-unception'
+Plug 'moll/vim-bbye'
 call plug#end()
 
 if !empty($DOTFILES_SETUP)
