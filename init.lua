@@ -1,6 +1,13 @@
 local vimrc = vim.fn.stdpath("config") .. "/vimrc.vim"
 vim.cmd.source(vimrc)
-require'lspconfig'.tsserver.setup {}
+-- tsserver sucks at formatting
+require'lspconfig'.tsserver.setup{
+  on_attach = function(client)
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
+  end,
+}
+
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
@@ -19,7 +26,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- Buffer local mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     local opts = { buffer = ev.buf }
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+    vim.keymap.set('n', 'gD', vim.lsp.buf.type_definition, opts)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
@@ -80,26 +87,6 @@ null_ls.setup({
       end, { buffer = bufnr, desc = "[lsp] format" })
     end
   end,
-})
-
-local prettier = require("prettier")
-
-prettier.setup({
-  bin = 'prettierd',
-  filetypes = {
-    "css",
-    "graphql",
-    "html",
-    "javascript",
-    "javascriptreact",
-    "json",
-    "less",
-    "markdown",
-    "scss",
-    "typescript",
-    "typescriptreact",
-    "yaml",
-  },
 })
 
 -- Add additional capabilities supported by nvim-cmp
@@ -181,23 +168,23 @@ require("fidget").setup {
 local util = require 'lspconfig.util'
 local configs = require 'lspconfig.configs'
 
-configs.ideals = {
-  default_config = {
-    cmd = { '/Users/jocelynstericker/Library/Application Support/JetBrains/Toolbox/apps/IDEA-C/ch-0/231.9392.1/IntelliJ IDEA CE.app/Contents/MacOS/idea', 'lsp-server' },
-    cmd_env = {
-    },
-    filetypes = { 'kotlin' },
-    root_dir = util.find_git_ancestor,
-    single_file_support = true,
-  },
-  docs = {
-    description = [[
-]],
-    default_config = {
-      root_dir = [[util.find_git_ancestor]],
-    },
-  },
-}
+-- configs.ideals = {
+--   default_config = {
+--     cmd = { '/Applications/IntelliJ IDEA CE2.app/Contents/MacOS/idea', 'lsp-server' },
+--     cmd_env = {
+--     },
+--     filetypes = { 'kotlin' },
+--     root_dir = util.find_git_ancestor,
+--     single_file_support = true,
+--   },
+--   docs = {
+--     description = [[
+-- ]],
+--     default_config = {
+--       root_dir = [[util.find_git_ancestor]],
+--     },
+--   },
+-- }
 
-require'lspconfig'.ideals.setup {}
+-- require'lspconfig'.ideals.setup {}
 require'colorizer'.setup()

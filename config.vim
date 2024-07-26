@@ -86,6 +86,12 @@ set undofile
 imap ^[[1~ <Home>
 imap ^[[4~ <End>
 
-let g:copilot_node_command = "/opt/homebrew/opt/node@16/bin/node"
+" let g:copilot_node_command = "/opt/homebrew/opt/node@16/bin/node"
 nnoremap <leader>v :execute 'silent !idea --line '.line('.').' '.expand('%:p')\|redraw!<cr>
 highlight CopilotSuggestion guifg=#84a3b1 ctermfg=8
+let g:neoformat_try_node_exe = 1
+autocmd BufWritePre *.js Neoformat prettierd
+autocmd BufWritePre *.ts Neoformat prettierd
+autocmd BufWritePre *.jsx Neoformat prettierd
+autocmd BufWritePre *.tsx Neoformat prettierd
+autocmd BufWritePre *.css Neoformat prettierd

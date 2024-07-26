@@ -37,7 +37,4 @@ env:
 
 decorations: none
 shell:
-  program: /opt/homebrew/bin/fish
-  args:
-    - -c
-    - nvim
+  program: /opt/homebrew/bin/tmux

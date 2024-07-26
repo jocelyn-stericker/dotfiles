@@ -34,7 +34,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'github/copilot.vim'
 Plug 'jose-elias-alvarez/null-ls.nvim'
-Plug 'MunifTanjim/prettier.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -44,6 +43,7 @@ Plug 'j-hui/fidget.nvim', { 'tag': 'legacy' }
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'samjwill/nvim-unception'
 Plug 'moll/vim-bbye'
+Plug 'sbdchd/neoformat'
 call plug#end()
 
 if !empty($DOTFILES_SETUP)
