@@ -1,12 +1,20 @@
-colorscheme fairyfloss
-
-set cursorline
-hi MarchParen ctermfg=208 ctermbg=233 cterm=bold
 set termguicolors
-set mouse=a
+set background=light
+colorscheme gruvbox
+
+""" very magical find/replace """
+set inccommand=split
+nnoremap / /\v
+vnoremap / /\v
+
+""" autocompletion """
+imap <C-s> <Plug>(copilot-suggest)
+let g:copilot_enabled = "v:false"
+
+""" long lived undo/redo """
+set undofile
 
 """" camelcasemotion """"
-
 map <silent> w <Plug>CamelCaseMotion_w
 map <silent> b <Plug>CamelCaseMotion_b
 map <silent> e <Plug>CamelCaseMotion_e
@@ -32,38 +40,8 @@ endfunction
 
 map <C-k> :call <SID>BlameToggle()<CR>
 
-" TextEdit might fail if hidden is not set.
-set hidden
-
-" Some servers have issues with backup files, see #649.
-set nobackup
-set nowritebackup
-
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=300
-
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
-
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-set signcolumn=yes
-
-set updatetime=100
-
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-" inoremap <silent><expr> <c-p> coc#refresh()
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Mappings using FZF:
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+"o"" fzf mappings/config """
+let g:fzf_layout = { 'window': { 'width': 1.0, 'height': 1.0 } }
 command! -bang -nargs=* GGrep
   \ call fzf#vim#grep(
   \   'git grep --line-number -- '.shellescape(<q-args>), 0,
@@ -75,23 +53,21 @@ nnoremap <silent> <leader>T :<C-u>GFiles<cr>
 nnoremap <silent> <leader>p :<C-u>GFiles?<cr>
 nnoremap <silent> <leader>L :<C-u>Rg<cr>
 
-set inccommand=split
-nnoremap / /\v
-vnoremap / /\v
 let g:fzf_history_dir = '~/.local/share/fzf-history'
+
+""" search """
 set grepprg=rg\ --vimgrep\ --no-heading\ --engine\ auto
 set grepformat=%f:%l:%c:%m,%f:%l:%m
-set undofile
 
-imap ^[[1~ <Home>
-imap ^[[4~ <End>
-
-" let g:copilot_node_command = "/opt/homebrew/opt/node@16/bin/node"
-nnoremap <leader>v :execute 'silent !idea --line '.line('.').' '.expand('%:p')\|redraw!<cr>
-highlight CopilotSuggestion guifg=#84a3b1 ctermfg=8
+""" formatting """
 let g:neoformat_try_node_exe = 1
 autocmd BufWritePre *.js Neoformat prettierd
 autocmd BufWritePre *.ts Neoformat prettierd
 autocmd BufWritePre *.jsx Neoformat prettierd
 autocmd BufWritePre *.tsx Neoformat prettierd
 autocmd BufWritePre *.css Neoformat prettierd
+
+""" fold """
+lua vim.wo.foldmethod = 'expr'
+lua vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+nnoremap gp :silent %!prettier --stdin-filepath %<CR>
