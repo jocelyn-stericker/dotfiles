@@ -10,6 +10,7 @@ vnoremap / /\v
 """ autocompletion """
 imap <C-s> <Plug>(copilot-suggest)
 let g:copilot_enabled = "v:false"
+set completeopt=menu,menuone,popup
 
 """ long lived undo/redo """
 set undofile
@@ -66,6 +67,7 @@ autocmd BufWritePre *.ts Neoformat prettierd
 autocmd BufWritePre *.jsx Neoformat prettierd
 autocmd BufWritePre *.tsx Neoformat prettierd
 autocmd BufWritePre *.css Neoformat prettierd
+autocmd BufWritePre *.rs Neoformat
 
 """ fold """
 lua vim.wo.foldmethod = 'expr'

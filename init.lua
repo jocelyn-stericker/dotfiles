@@ -48,7 +48,21 @@ require'lspconfig'.eslint.setup({
 
 local lspconfig = require('lspconfig')
 
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tailwindcss', 'tsserver'}
+
+lspconfig['rust_analyzer'].setup {
+  settings = {
+    ["rust-analyzer"] = {
+      check = {
+        command = "clippy"
+      },
+      cargo = {
+        features = "all"
+      }
+    }
+  }
+}
+
+local servers = { 'clangd', 'pyright', 'tailwindcss', 'ts_ls'}
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     -- on_attach = my_custom_on_attach,
