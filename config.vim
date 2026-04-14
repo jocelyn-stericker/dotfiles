@@ -62,25 +62,55 @@ set grepformat=%f:%l:%c:%m,%f:%l:%m
 
 """ formatting """
 let g:neoformat_try_node_exe = 1
-autocmd BufWritePre *.js Neoformat prettierd
-autocmd BufWritePre *.ts Neoformat prettierd
-autocmd BufWritePre *.jsx Neoformat prettierd
-autocmd BufWritePre *.tsx Neoformat prettierd
+autocmd BufWritePre *.js Neoformat oxfmt
+autocmd BufWritePre *.ts Neoformat oxfmt
+autocmd BufWritePre *.jsx Neoformat oxfmt
+autocmd BufWritePre *.tsx Neoformat oxfmt
 autocmd BufWritePre *.css Neoformat prettierd
 autocmd BufWritePre *.html Neoformat prettierd
 autocmd BufWritePre *.sql Neoformat prettierd
 autocmd BufWritePre *.rs Neoformat
 
 let g:neoformat_sql_prettierd = {
-            \ 'exe': 'prettierd',
-            \ 'args': ['"%:p"'],
-            \ 'stdin': 1,
-            \ }
+        \ 'exe': 'prettierd',
+        \ 'args': ['"%:p"'],
+        \ 'stdin': 1,
+        \ }
+
+let g:neoformat_javascriptreact_oxfmt = {
+        \ 'exe': 'oxfmt',
+        \ 'args': ['--stdin-filepath', '"%:p"'],
+        \ 'stdin': 1,
+        \ 'try_node_exe': 1,
+        \ }
+let g:neoformat_typescriptreact_oxfmt = {
+        \ 'exe': 'oxfmt',
+        \ 'args': ['--stdin-filepath', '"%:p"'],
+        \ 'stdin': 1,
+        \ 'try_node_exe': 1,
+        \ }
+let g:neoformat_typescript_oxfmt = {
+        \ 'exe': 'oxfmt',
+        \ 'args': ['--stdin-filepath', '"%:p"'],
+        \ 'stdin': 1,
+        \ 'try_node_exe': 1,
+        \ }
+let g:neoformat_javascript_oxfmt = {
+        \ 'exe': 'oxfmt',
+        \ 'args': ['--stdin-filepath', '"%:p"'],
+        \ 'stdin': 1,
+        \ 'try_node_exe': 1,
+        \ }
 
 let g:neoformat_enabled_sql = ['prettierd']
+let g:neoformat_enabled_javascript = ['oxfmt', 'prettierd']
+let g:neoformat_enabled_javascriptreact = ['oxfmt', 'prettierd']
+let g:neoformat_enabled_typescript = ['oxfmt', 'prettierd']
+let g:neoformat_enabled_typescriptreact = ['oxfmt', 'prettierd']
 
 """ fold """
 lua vim.wo.foldmethod = 'expr'
 lua vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 nnoremap gp :silent %!prettier --stdin-filepath %<CR>
 let g:tsc_makeprg = "tsgo"
+ autocmd FileType typescript,typescriptreact compiler tsc

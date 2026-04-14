@@ -47,8 +47,15 @@ vim.lsp.config('eslint', {
     })
   end,
 })
-vim.lsp.enable('eslint')
-
+-- vim.lsp.enable('eslint')
+vim.lsp.config('oxlint', {
+  settings = {
+    ["oxlint"] = {
+      typeCheck = false
+    }
+  },
+})
+vim.lsp.enable('oxlint')
 
 vim.lsp.config('rust_analyzer', {
   settings = {
@@ -64,26 +71,29 @@ vim.lsp.config('rust_analyzer', {
       }
     }
   },
-  vim.api.nvim_create_autocmd("BufWritePre", {
-    buffer = buffer,
-      callback = function()
-          vim.lsp.buf.format { async = false }
-      end
-  })
 })
 vim.lsp.enable('rust_analyzer')
-
-vim.lsp.config('ts_ls', {
-  settings = {
-    typescript = {
-      tsserver = { maxTsServerMemory = 16184 }
-    },
-    javascript = {
-      tsserver = { maxTsServerMemory = 16184 }
-    }
-  }
+vim.api.nvim_create_autocmd("BufWritePre", {
+  buffer = buffer,
+    callback = function()
+        vim.lsp.buf.format {
+	  async = false,
+	  filter = function(client) return client.name ~= "tsgo" end
+	}
+    end
 })
-vim.lsp.enable('ts_ls')
+
+-- vim.lsp.config('tsgo', {
+--   settings = {
+--     typescript = {
+--       tsserver = { maxTsServerMemory = 16184 }
+--     },
+--     javascript = {
+--       tsserver = { maxTsServerMemory = 16184 }
+--     }
+--   }
+-- })
+vim.lsp.enable('tsgo')
 
 local servers = { 'clangd', 'pyright', 'tailwindcss'}
 for _, lsp in ipairs(servers) do
