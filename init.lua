@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspConfig', {}),
   callback = function(ev)
     -- Enable completion triggered by <c-x><c-o>
-    vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+    -- vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
     -- Buffer local mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -37,79 +37,92 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 
-require'lspconfig'.eslint.setup({
+local base_on_attach = vim.lsp.config.eslint.on_attach
+vim.lsp.config('eslint', {
   on_attach = function(client, bufnr)
+    base_on_attach(client, bufnr)
     vim.api.nvim_create_autocmd("BufWritePre", {
       buffer = bufnr,
-      command = "EslintFixAll",
+      command = "LspEslintFixAll",
     })
   end,
 })
+vim.lsp.enable('eslint')
 
-local lspconfig = require('lspconfig')
 
-
-lspconfig['rust_analyzer'].setup {
+vim.lsp.config('rust_analyzer', {
   settings = {
     ["rust-analyzer"] = {
       check = {
         command = "clippy"
       },
       cargo = {
-        features = "all"
+        features = "all",
+        buildScripts = {
+          enable = true
+        }
       }
     }
-  }
-}
+  },
+  vim.api.nvim_create_autocmd("BufWritePre", {
+    buffer = buffer,
+      callback = function()
+          vim.lsp.buf.format { async = false }
+      end
+  })
+})
+vim.lsp.enable('rust_analyzer')
 
-local servers = { 'clangd', 'pyright', 'tailwindcss', 'ts_ls'}
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    -- on_attach = my_custom_on_attach,
-    -- capabilities = capabilities,
+vim.lsp.config('ts_ls', {
+  settings = {
+    typescript = {
+      tsserver = { maxTsServerMemory = 16184 }
+    },
+    javascript = {
+      tsserver = { maxTsServerMemory = 16184 }
+    }
   }
+})
+vim.lsp.enable('ts_ls')
+
+local servers = { 'clangd', 'pyright', 'tailwindcss'}
+for _, lsp in ipairs(servers) do
+  vim.lsp.enable(lsp)
 end
 
-require'nvim-treesitter.configs'.setup {
-  -- A list of parser names, or "all" (the five listed parsers should always be installed)
-  ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "typescript", "tsx", "javascript", "rust" },
+require('nvim-treesitter').install({
+  "c", "lua", "vim", "vimdoc", "query", "typescript", "tsx", "javascript", "rust"
+})
 
-  -- Install parsers synchronously (only applied to `ensure_installed`)
-  sync_install = false,
+require('nvim-highlight-colors').setup({
 
-  -- Automatically install missing parsers when entering buffer
-  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-  auto_install = true,
+    	---Highlight short hex colors e.g. '#fff'
+	enable_short_hex = true,
 
-  -- List of parsers to ignore installing (for "all")
-  ignore_install = {},
+	---Highlight rgb colors, e.g. 'rgb(0 0 0)'
+	enable_rgb = true,
 
-  ---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
-  -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
+	---Highlight hsl colors, e.g. 'hsl(150deg 30% 40%)'
+	enable_hsl = true,
+	
+	---Highlight ansi colors, e.g '\033[0;34m'
+	enable_ansi = true,
 
-  highlight = {
-    enable = true,
+	---Highlight xterm 256 (8bit) colors, e.g '\033[38;5;118m'
+	enable_xterm256 = true,
 
-    -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
-    -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
-    -- the name of the parser)
-    -- list of language that will be disabled
-    -- disable = { "c", "rust" },
-    -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
-    -- disable = function(lang, buf)
-    --     local max_filesize = 100 * 1024 -- 100 KB
-    --     local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-    --     if ok and stats and stats.size > max_filesize then
-    --         return true
-    --     end
-    -- end,
+	---Highlight xterm True Color (24bit) colors, e.g '\033[38;2;118;64;90m'
+	enable_xtermTrueColor = true,
 
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
-  },
-}
+  -- Highlight hsl colors without function, e.g. '--foreground: 0 69% 69%;'
+  enable_hsl_without_function = true,
 
-require'colorizer'.setup()
+	---Highlight CSS variables, e.g. 'var(--testing-color)'
+	enable_var_usage = true,
+
+	---Highlight named colors, e.g. 'green'
+	enable_named_colors = true,
+
+	---Highlight tailwind colors, e.g. 'bg-blue-500'
+	enable_tailwind = false,
+})

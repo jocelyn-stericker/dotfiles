@@ -33,6 +33,5 @@ key_bindings:
 env:
   TERM: alacritty
 
-decorations: none
 shell:
   program: /opt/homebrew/bin/tmux

@@ -15,26 +15,32 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-dispatch'
 Plug 'bkad/camelcasemotion'
 Plug 'moll/vim-bbye'
 
 " Search
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'ibhagwan/fzf-lua'
 
 " VCS
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'tommcdo/vim-fugitive-blame-ext'
 Plug 'mhinz/vim-signify'
+Plug 'rafikdraoui/jj-diffconflicts'
 
 " Language support
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'norcalli/nvim-colorizer.lua'
+Plug 'brenoprata10/nvim-highlight-colors'
 Plug 'neovim/nvim-lspconfig'
 Plug 'sbdchd/neoformat'
  
 Plug 'github/copilot.vim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-tree/nvim-web-devicons'
+
 call plug#end()
 
 if !empty($DOTFILES_SETUP)

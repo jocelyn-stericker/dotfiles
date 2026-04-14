@@ -67,9 +67,20 @@ autocmd BufWritePre *.ts Neoformat prettierd
 autocmd BufWritePre *.jsx Neoformat prettierd
 autocmd BufWritePre *.tsx Neoformat prettierd
 autocmd BufWritePre *.css Neoformat prettierd
+autocmd BufWritePre *.html Neoformat prettierd
+autocmd BufWritePre *.sql Neoformat prettierd
 autocmd BufWritePre *.rs Neoformat
+
+let g:neoformat_sql_prettierd = {
+            \ 'exe': 'prettierd',
+            \ 'args': ['"%:p"'],
+            \ 'stdin': 1,
+            \ }
+
+let g:neoformat_enabled_sql = ['prettierd']
 
 """ fold """
 lua vim.wo.foldmethod = 'expr'
 lua vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 nnoremap gp :silent %!prettier --stdin-filepath %<CR>
+let g:tsc_makeprg = "tsgo"
